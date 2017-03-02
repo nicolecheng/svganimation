@@ -9,10 +9,14 @@ var stop = function(){
 
 }
 
-var animate_dot = function(){
+var clear = function(){
     while (s.lastChild) {
 	s.removeChild(s.lastChild);
     }
+}
+
+var animate_dot = function(){
+    clear();
     var circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circ.setAttribute("cx",250);
     circ.setAttribute("cy",250);
@@ -41,6 +45,7 @@ var animate_dot = function(){
 };
 
 var animate_dvd = function(){
+    var dvd = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     var x = 0;
     var y = 0;
     var right = true;
@@ -48,9 +53,6 @@ var animate_dvd = function(){
     window.cancelAnimationFrame(rid); 
     var dvd = function(){
 	clear();
-	var ctx = c.getContext('2d');
-	ctx.beginPath();
-	ctx.fillRect(x,y,75,50);
 	rid = window.requestAnimationFrame( dvd );
 	if(x >= 425){
 	    right = false;
