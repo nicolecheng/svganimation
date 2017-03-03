@@ -17,13 +17,13 @@ var clear = function(){
 
 var animate_dot = function(){
     clear();
+    var r = 0;
     var circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circ.setAttribute("cx",250);
     circ.setAttribute("cy",250);
     circ.setAttribute("fill","yellow");
     circ.setAttribute("r",r);
     var inc = true;
-    var r = 0;
     stop();
     var circle = function(){
 	if(r>=250){
@@ -33,7 +33,6 @@ var animate_dot = function(){
 	}
 	if(inc){
 	    r++;
-	    console.log(r);
 	}else{
 	    r--;
 	}
@@ -45,14 +44,18 @@ var animate_dot = function(){
 };
 
 var animate_dvd = function(){
-    var dvd = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    clear();
+    //stop();
+    window.cancelAnimationFrame(rid); 
+    var d = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    d.setAttribute("height",50);
+    d.setAttribute("width",75);
+    d.setAttribute("fill","blue");
     var x = 0;
     var y = 0;
     var right = true;
     var down = true;
-    window.cancelAnimationFrame(rid); 
     var dvd = function(){
-	clear();
 	rid = window.requestAnimationFrame( dvd );
 	if(x >= 425){
 	    right = false;
@@ -74,6 +77,9 @@ var animate_dvd = function(){
 	}else{
 	    y--;
 	}
+	d.setAttribute("x",x);
+	d.setAttribute("y",y);
+	s.appendChild(d);
     };
     dvd();
 };
